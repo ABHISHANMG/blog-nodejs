@@ -13,6 +13,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/abhishan', (req, res) => {
+    res.send('Missing you a little too much, a little too often, and a little more every day. 💖');
+});
+
 app.use('/', registerApi );
 app.use(verifyJwt);
 app.use('/', require('./routes/posts'));
