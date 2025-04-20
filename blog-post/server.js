@@ -22,6 +22,8 @@ app.use(verifyJwt);
 app.use('/', require('./routes/posts'));
 
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Server is running on http://localhost:${port}`);
+// });
+
+module.exports = app;
