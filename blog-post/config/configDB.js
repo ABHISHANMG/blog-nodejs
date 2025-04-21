@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://abhishanmg:3br19me402@cluster0.vopgpjq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0I', {
+        await mongoose.connect(process.env.MONGODB_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true
         });
-        console.log("Mongo connect server");
-        
+        console.log("MongoDB connected successfully");
     } catch (err) {
-        console.error(err);
+        console.error("MongoDB connection error:", err);
+        process.exit(1);
     }
 }
 
-module.exports = connectDB
+module.exports = connectDB;

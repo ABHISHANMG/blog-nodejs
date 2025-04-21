@@ -172,11 +172,15 @@ const handleDeleteComment = async (req, res) => {
 
 const handleGetPostByUserId = async (req, res) => {
     const { userId } = req.params;
+    
     try {
-        const posts = await Posts.find({ userId });
-        if (!posts) {
-            return res.status(404).json({ message: 'No posts found for this user' });
+        // Validate if userId is a valid ObjectId
+        if (!ObjectId.isValid(userId)) {
+            return res.status(400).json({ message: 'Invalid user ID format' });
         }
+
+        const posts = await Posts.find({ userId });
+        // Return empty array if no posts found instead of 404
         res.status(200).json(posts);
     } catch (error) {
         console.error("Get Post by User ID error:", error);
