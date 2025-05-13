@@ -19,6 +19,11 @@ const userSchema = new schema({
         unique: true,
         trim: true,
     },
+    role: {
+        type: String,
+        enum: ['admin', 'editor', 'member', 'viewer'],
+        default: 'viewer'
+    }
 }, {
     timestamps: true,
 });
