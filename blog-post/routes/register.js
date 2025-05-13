@@ -1,9 +1,10 @@
-const {handleRegister, handleLogin,handleLogout} = require('../controllers/register');
+const { handleRegister, handleLogin, handleLogout } = require('../controllers/register');
 const express = require('express');
 const router = express.Router();
+const { asyncHandler } = require('../middleware/errorHandler');
 
-router.post('/register', handleRegister);
-router.post('/login', handleLogin);
-router.post('/logout', handleLogout);
+router.post('/register', asyncHandler(handleRegister));
+router.post('/login', asyncHandler(handleLogin));
+router.post('/logout', asyncHandler(handleLogout));
 
 module.exports = router;

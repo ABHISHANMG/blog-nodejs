@@ -42,8 +42,8 @@ const handleLogin = async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }   
         const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN, { expiresIn: '1d' });
-        res.status(200).json({ token, userId: user._id });
         res.cookie('token', token, { httpOnly: true });
+        res.status(200).json({ token, userId: user._id });
     } catch (error) {
         console.error("Login error:", error);
         return res.status(500).json({ message: 'Server error' });

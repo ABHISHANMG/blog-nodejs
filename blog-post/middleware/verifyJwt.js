@@ -17,6 +17,8 @@ const verifyJwt = (req, res, next) => {
         }
 
         req.userId = decoded.id;
+        console.log('Decoded JWT:', decoded);
+        console.log('User ID:', req.userId);
         next();
     });
 };

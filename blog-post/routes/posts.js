@@ -1,4 +1,5 @@
-const {    handleCreatePost,
+const {
+    handleCreatePost,
     handleGetPosts,
     handleGetPostById,
     handleUpdatePost,
@@ -8,20 +9,36 @@ const {    handleCreatePost,
     handleCommentPost,
     handleGetComments,
     handleDeleteComment,
-    handleGetPostByUserId} = require('../controllers/posts');
+    handleGetPostByUserId
+} = require('../controllers/posts');
 
 const express = require('express');
 const router = express.Router();
+const { asyncHandler } = require('../middleware/errorHandler');
 
-router.route('/posts').post(handleCreatePost).get(handleGetPosts);
-router.route('/posts/:id').get(handleGetPostById).put(handleUpdatePost).delete(handleDeletePost);
-router.route('/posts/:id/like').put(handleLikePost);
-router.route('/posts/:id/dislike').put(handleDislikePost);
-router.route('/posts/:id/comment').post(handleCommentPost);
-router.route('/posts/:id/comment').get(handleGetComments);
-router.route('/posts/:userId').get(handleGetPostByUserId);
-router.route('/posts/:postId/comment/:commentId').delete(handleDeleteComment);
+router.route('/posts')
+    .post(asyncHandler(handleCreatePost))
+    .get(asyncHandler(handleGetPosts));
 
+router.route('/posts/:id')
+    .get(asyncHandler(handleGetPostById))
+    .put(asyncHandler(handleUpdatePost))
+    .delete(asyncHandler(handleDeletePost));
 
+router.route('/posts/:id/like')
+    .put(asyncHandler(handleLikePost));
+
+router.route('/posts/:id/dislike')
+    .put(asyncHandler(handleDislikePost));
+
+router.route('/posts/:id/comment')
+    .post(asyncHandler(handleCommentPost))
+    .get(asyncHandler(handleGetComments));
+
+router.route('/posts/:userId')
+    .get(asyncHandler(handleGetPostByUserId));
+
+router.route('/posts/:postId/comment/:commentId')
+    .delete(asyncHandler(handleDeleteComment));
 
 module.exports = router;
