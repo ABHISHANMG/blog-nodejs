@@ -1,7 +1,3 @@
-Here’s a clean and practical `README.md` for your `blog-post` project, based on your file structure and `package.json`.
-
----
-
 # 📝 Blog Post API
 
 A simple RESTful API for a blog system built with Node.js, Express, and MongoDB. It includes user registration with hashed passwords, JWT-based authentication, protected routes, and basic CRUD for blog posts.
